@@ -4,17 +4,10 @@ export function StarIcon(
   props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>
 ) {
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      fill="none"
-      viewBox="0 0 24 24"
-      {...props}
-    >
+    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" {...props}>
       <path
-        fill={props.fill || "#171740"}
-        stroke={props.fill || "#171740"}
+        fill={"currentColor"}
+        stroke={"currentColor"}
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="2"

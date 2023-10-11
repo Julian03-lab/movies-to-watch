@@ -19,6 +19,5 @@ export type MovieDetail = {
     created_at: string
     title: string
     photo: string
-    vote_average: number
-    qualified: boolean
+    user_vote: number | null
 }

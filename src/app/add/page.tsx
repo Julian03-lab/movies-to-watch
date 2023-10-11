@@ -1,5 +1,3 @@
-import React, { Suspense } from "react";
-import Loading from "../loading";
 import MovieListFromApi from "@/components/MovieListFromApi";
 import { BackArrow } from "@/utils/Icons";
 import Link from "next/link";
@@ -11,9 +9,7 @@ const page = () => {
         <BackArrow className="w-6 h-6 text-primary-500" />
         <h2 className="text-lg font-normal text-primary-500">Ir atras</h2>
       </Link>
-      <Suspense fallback={<Loading />}>
-        <MovieListFromApi />
-      </Suspense>
+      <MovieListFromApi />
     </main>
   );
 };

@@ -17,8 +17,7 @@ async function getData(query: string) {
     const res = await axios.get(url, {
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiODQxYTEzMDA4Y2RlY2M4NzQ1MDI0OTQwOWE1Y2E2YiIsInN1YiI6IjY1MjQ5NmFiZmQ2MzAwMDBmZmNjNTE0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.q7TpeJdcvysgeAsRMLFfYbxbMNXtowBuaCk5O8Oyig8",
+        Authorization: process.env.NEXT_PUBLIC_TMDB_KEY,
       },
     });
 
