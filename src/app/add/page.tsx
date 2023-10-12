@@ -1,4 +1,4 @@
-import MovieListFromApi from "@/components/MovieListFromApi";
+import MovieListFromApi from "@/components/add/MovieListFromApi";
 import { BackArrow } from "@/utils/Icons";
 import Link from "next/link";
 

@@ -75,16 +75,14 @@ const MovieModal = ({ movie, setMovie }: ModalProps) => {
               <CloseIcon className="w-6 h-6 stroke-primary-500" />
             </button>
             <div className="px-6 py-6 lg:px-8 grid grid-cols-3 gap-6">
-              <div className="aspect-[9/16] h-full w-full relative col-span-1">
-                <Image
-                  fill
-                  className="rounded-lg"
-                  src={
-                    "https://image.tmdb.org/t/p/original" + movie.poster_path
-                  }
-                  alt={movie.title}
-                />
-              </div>
+              <Image
+                priority
+                width={720}
+                height={1280}
+                className="rounded-lg"
+                src={"https://image.tmdb.org/t/p/original" + movie.poster_path}
+                alt={movie.title}
+              />
               <div className="w-full flex flex-col col-span-2 justify-between items-start">
                 <div>
                   <span className="inline-flex gap-2 items-center">
@@ -104,7 +102,10 @@ const MovieModal = ({ movie, setMovie }: ModalProps) => {
                   onClick={handleAddMovie}
                   type="button"
                   disabled={sending}
-                  className="mt-2 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-semibold rounded-lg group bg-gradient-to-br from-primary-300 to-lime-300 group-hover:from-primary-300 group-hover:to-lime-300 hover:text-gray-900 "
+                  className={`mt-2 relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-semibold rounded-lg group bg-gradient-to-br from-primary-300 to-lime-300 ${
+                    !sending &&
+                    "group-hover:from-primary-300 group-hover:to-lime-300 hover:text-gray-900"
+                  }`}
                 >
                   <span
                     className={`relative px-5 py-2.5 transition ease-in duration-75 bg-gray-900 rounded-md ${

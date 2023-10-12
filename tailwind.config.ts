@@ -9,6 +9,11 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    extend: {
+      maxWidth: {
+        'desktop': '1440px',
+      }
+    },
     colors: {
       'primary': {
         '50': '#fffeea',

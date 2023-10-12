@@ -24,7 +24,7 @@ export default async function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col px-28 py-8 gap-6 bg-black-700">
+    <main className="flex min-h-screen flex-col px-28 py-8 gap-6 bg-black-700 items-center">
       <Title />
       <Suspense fallback={<Loading />}>
         <MoviesList />

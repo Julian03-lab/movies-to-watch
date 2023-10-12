@@ -21,3 +21,10 @@ export type MovieDetail = {
     photo: string
     user_vote: number | null
 }
+
+export type responseTMDB = {
+page: number
+results: Movie[]
+total_pages: number
+total_results: number
+}

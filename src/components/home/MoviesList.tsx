@@ -10,7 +10,7 @@ const MoviesList = async () => {
   const supabase = createServerComponentClient({ cookies });
   const { data: movies } = await supabase.from("movies").select();
   return (
-    <div className="flex gap-4 flex-wrap justify-start w-full">
+    <div className="flex gap-4 flex-wrap justify-start w-full max-w-desktop">
       {movies &&
         movies.map((movie: MovieDetail) => (
           <div
@@ -29,10 +29,11 @@ const MoviesList = async () => {
             <div
               className={`w-[128px] h-[190px] relative mt-2 ${
                 !movie.user_vote && "grayscale"
-              } hover:grayscale-0 transition delay-100 cursor-pointer`}
+              } hover:grayscale-0 transition delay-100 cursor-pointer hover:shadow-lg`}
             >
               <Image
                 fill
+                sizes="100%"
                 className="rounded-lg"
                 src={"https://image.tmdb.org/t/p/original" + movie.photo}
                 alt={movie.title}
