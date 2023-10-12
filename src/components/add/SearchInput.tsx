@@ -1,21 +1,30 @@
 "use client";
 
 import { SearchIcon } from "@/utils/Icons";
-import { Dispatch, SetStateAction } from "react";
+import useDebounce from "@/utils/hooks/useDebounce";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-type PropsType = {
-  query: string;
-  setQuery: any;
-};
+const SearchInput = ({ search }: { search: string | undefined }) => {
+  const [query, setQuery] = useState(search);
+  const debouncedQuery = useDebounce(query, 500);
+  const router = useRouter();
 
-const SearchInput = ({ query, setQuery }: PropsType) => {
+  useEffect(() => {
+    if (!debouncedQuery) {
+      router.push("/add");
+    } else {
+      router.push(`/add?search=${debouncedQuery.trim()}`);
+    }
+  }, [debouncedQuery, router]);
+
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
         <SearchIcon className="w-4 h-4 text-gray-400" />
       </div>
       <input
-        onChange={setQuery}
+        onChange={(e) => setQuery(e.target.value)}
         value={query}
         type="search"
         id="search"

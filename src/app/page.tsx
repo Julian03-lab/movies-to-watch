@@ -3,7 +3,6 @@ import AuthButtonServer from "@/components/landing/AuthButtonServer";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
-import Loading from "./loading";
 import MoviesList from "@/components/home/MoviesList";
 
 export default async function Home() {
@@ -26,7 +25,7 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col px-28 py-8 gap-6 bg-black-700 items-center">
       <Title />
-      <Suspense fallback={<Loading />}>
+      <Suspense fallback={<div> cargando </div>}>
         <MoviesList />
       </Suspense>
     </main>

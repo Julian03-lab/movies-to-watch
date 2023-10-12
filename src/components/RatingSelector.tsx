@@ -22,11 +22,15 @@ const RatingSelector: React.FC<RatingSelectorProps> = ({ onRatingChange }) => {
           className="cursor-pointer"
           onMouseEnter={() => setHover(value)}
           onMouseLeave={() => setHover(rating)}
+          onDoubleClick={() => {
+            setHover(0);
+            setRating(0);
+          }}
         >
           <StarIcon
             className={`w-8 h-8 ${
               value <= (hover || rating) ? "text-yellow-300" : "text-gray-500"
-            } hover:text-yellow-300 transition-colors delay-100`}
+            } transition-colors delay-100`}
           />
         </button>
       ))}
