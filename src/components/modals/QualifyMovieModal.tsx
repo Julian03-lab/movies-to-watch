@@ -1,6 +1,5 @@
 import { MovieDetail } from "@/types/common";
-import { CloseIcon, StarIcon } from "@/utils/Icons";
-import voteAverageFormatter from "@/utils/voteAverageFormatter";
+import { CloseIcon } from "@/utils/Icons";
 import Image from "next/image";
 import RatingSelector from "../RatingSelector";
 
@@ -10,7 +9,7 @@ type ModalProps = {
   movie: MovieDetail;
 };
 
-const QualifyMovieModal = ({ open, setOpen, movie }: ModalProps) => {
+const QualifyMovieModal = async ({ open, setOpen, movie }: ModalProps) => {
   return (
     <>
       {open && (
@@ -42,7 +41,7 @@ const QualifyMovieModal = ({ open, setOpen, movie }: ModalProps) => {
                 src={"https://image.tmdb.org/t/p/original" + movie.photo}
                 alt={movie.title}
               />
-              <RatingSelector />
+              <RatingSelector movie={movie} />
             </div>
           </div>
         </div>

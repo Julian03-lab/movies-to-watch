@@ -4,9 +4,17 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { Suspense } from "react";
 import MoviesList from "@/components/home/MoviesList";
+import FilterButton from "@/components/home/FilterButton";
 
-export default async function Home() {
+type Props = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default async function Home({ searchParams }: Props) {
   const supabase = createServerComponentClient({ cookies });
+  const status =
+    typeof searchParams.status === "string" ? searchParams.status : undefined;
+
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -25,8 +33,9 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col px-28 py-8 gap-6 bg-black-700 items-center">
       <Title />
+      <FilterButton />
       <Suspense fallback={<div> cargando </div>}>
-        <MoviesList />
+        <MoviesList status={status} />
       </Suspense>
     </main>
   );

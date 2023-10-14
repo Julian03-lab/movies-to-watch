@@ -9,8 +9,6 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export const dynamic = "force-dynamic";
-
 const page = async ({ searchParams }: Props) => {
   const search =
     typeof searchParams.search === "string" ? searchParams.search : undefined;

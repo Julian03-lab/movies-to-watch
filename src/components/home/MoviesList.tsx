@@ -6,13 +6,34 @@ import AddMovieCard from "./AddMovieCard";
 import voteAverageFormatter from "@/utils/voteAverageFormatter";
 import { MovieDetail } from "@/types/common";
 import { CardActionButtons } from "./CardActionButtons";
+import AuthButtonMovies from "../landing/AuthButtonMovie";
 
-const MoviesList = async () => {
+const MoviesList = async ({ status }: { status: string | undefined }) => {
   const supabase = createServerComponentClient({ cookies });
-  const { data: movies } = await supabase.from("movies").select();
+
+  const watched =
+    status === undefined ? undefined : status === "qualified" ? true : false;
+
+  console.log("visto", watched);
+
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  let query = supabase
+    .from("movies")
+    .select()
+    .order("created_at", { ascending: true })
+    .eq("user_id", session?.user.id);
+
+  if (watched !== undefined) {
+    query = query.eq("watched", watched);
+  }
+
+  const { data: movies } = await query;
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-10 gap-4 justify-start w-full max-w-desktop">
+    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 justify-start w-full max-w-desktop">
       {movies &&
         movies.map((movie: MovieDetail) => (
           <div
@@ -33,7 +54,7 @@ const MoviesList = async () => {
               )}
             </p>
             <div className="relative group">
-              <CardActionButtons movie={movie} />
+              <AuthButtonMovies movie={movie} />
               <Image
                 width={720}
                 height={1280}

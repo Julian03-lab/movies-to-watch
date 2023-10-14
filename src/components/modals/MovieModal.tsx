@@ -30,6 +30,8 @@ const MovieModal = ({ movie, setMovie }: ModalProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(movie);
+
   const handleAddMovie = async () => {
     if (!movie) return;
 
