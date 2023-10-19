@@ -33,17 +33,17 @@ const MoviesList = async ({ status }: { status: string | undefined }) => {
   const { data: movies } = await query;
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 justify-start w-full max-w-desktop">
+    <div className="flex flex-wrap gap-x-2 justify-start w-full max-w-desktop gap-y-4">
       {movies &&
         movies.map((movie: MovieDetail) => (
           <div
             key={movie.id}
             className="flex flex-col items-center justify-end"
           >
-            <p className="text-xs font-semibold text-center text-primary-500 tracking-wider uppercase max-w-[128px]">
+            <p className="text-sm font-semibold text-center text-primary-500 tracking-wider uppercase">
               {movie.title}
             </p>
-            <p className="text-[10px] font-normal text-center text-primary-500 flex gap-1">
+            <p className="text-xs font-normal text-center text-primary-500 flex gap-1">
               {movie.user_vote ? (
                 <>
                   {voteAverageFormatter(movie.user_vote)}
@@ -53,12 +53,11 @@ const MoviesList = async ({ status }: { status: string | undefined }) => {
                 "Pelicula pendiente"
               )}
             </p>
-            <div className="relative group">
+            <div className="relative h-[370px] w-[250px] group mt-3">
               <AuthButtonMovies movie={movie} />
               <Image
-                width={720}
-                height={1280}
-                className={`rounded-lg mt-2 ${
+                fill
+                className={`rounded-lg ${
                   !movie.user_vote && "grayscale"
                 } group-hover:grayscale-[40%] group-hover:shadow-lg`}
                 src={"https://image.tmdb.org/t/p/original" + movie.photo}

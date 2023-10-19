@@ -28,3 +28,16 @@ results: Movie[]
 total_pages: number
 total_results: number
 }
+
+export type recommendation = {
+    id: number
+    title: string
+    base_movies: {
+        id: any;
+        title: any;
+        overview: any;
+        poster_path: any;
+        vote_average: any;
+        release_date: any;
+    }[]
+}

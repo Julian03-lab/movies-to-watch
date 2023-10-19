@@ -10,7 +10,19 @@ export default function NavBar() {
             Movies To Watch
           </span>
         </Link>
-        <AuthButtonServer />
+        <div className="flex items-center gap-6">
+          <ul>
+            <li>
+              <Link
+                href="/recommendations"
+                className="text-white hover:text-primary-500"
+              >
+                Listas recomendadas
+              </Link>
+            </li>
+          </ul>
+          <AuthButtonServer />
+        </div>
       </div>
     </nav>
   );

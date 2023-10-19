@@ -12,14 +12,12 @@ const Recommendations = async () => {
   base_movies (id, title,overview, poster_path, vote_average, release_date)
   `);
 
-  console.log(data);
-
   return (
     <div className="flex min-h-screen px-28 py-8 gap-6 bg-black-700">
       {data?.map((movie: any) => (
         <Link
           key={movie.id}
-          className="p-3 group relative"
+          className="p-3 group relative h-fit"
           href={`/recommendations/${movie.id}`}
         >
           <h1 className="uppercase text-white text-lg font-semibold mb-4 text-center ">

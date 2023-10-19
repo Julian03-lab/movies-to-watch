@@ -11,7 +11,7 @@ const AddMovieCard = () => {
         aria-label="Add movie"
         href="/add"
         className={
-          "w-[128px] h-[190px] relative rounded-lg flex items-center justify-center hover:shadow-md group border-4 border-dotted border-primary-500"
+          "w-[250px] h-[370px] relative rounded-lg flex items-center justify-center hover:shadow-md group border-4 border-dotted border-primary-500"
         }
       >
         <AddIcon

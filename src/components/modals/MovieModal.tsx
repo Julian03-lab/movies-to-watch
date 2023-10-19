@@ -8,6 +8,7 @@ import {
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 type ModalProps = {
   movie: Movie | null;
@@ -30,8 +31,6 @@ const MovieModal = ({ movie, setMovie }: ModalProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(movie);
-
   const handleAddMovie = async () => {
     if (!movie) return;
 
@@ -40,6 +39,7 @@ const MovieModal = ({ movie, setMovie }: ModalProps) => {
       photo: movie.poster_path,
       user_vote: null,
       user_id: user?.user.id,
+      movie_id: movie.id,
     };
 
     try {
@@ -52,13 +52,19 @@ const MovieModal = ({ movie, setMovie }: ModalProps) => {
       }
       router.prefetch("/");
       router.push("/");
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      if (error.code === "23505") {
+        toast.error("Esta pelicula ya esta en tu lista.");
+      }
+      setMovie(null);
+    } finally {
+      setSending(false);
     }
   };
 
   return (
     <>
+      <Toaster position="bottom-right" />
       {movie && (
         <div
           onClick={() => setMovie(null)}
