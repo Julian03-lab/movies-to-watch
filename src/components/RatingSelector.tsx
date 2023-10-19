@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { StarIcon } from "@/utils/Icons";
 import {
@@ -23,7 +25,7 @@ const RatingSelector = ({
   const updateMovieRating = async (rating: number) => {
     const { error } = await supabase
       .from("movies")
-      .update({ user_vote: rating })
+      .update({ user_vote: rating, watched: true })
       .match({ id: movie.id, user_id: session?.user.id });
 
     if (error) {

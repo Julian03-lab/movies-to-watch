@@ -3,6 +3,7 @@
 import { Movie } from "@/types/common";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Session } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
 
 type MovieProps = {
   title: string;
@@ -18,6 +19,7 @@ const AddButton = ({
   session: Session | null;
   data: any;
 }) => {
+  const router = useRouter();
   const supabase = createClientComponentClient();
 
   const handleClick = async () => {
@@ -35,6 +37,7 @@ const AddButton = ({
       });
 
     await supabase.from("movies").insert(movies);
+    router.push("/");
   };
   return (
     <button
