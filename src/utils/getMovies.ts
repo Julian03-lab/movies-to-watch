@@ -20,6 +20,6 @@ export async function getMovies(query: string | undefined, page: number = 1) {
   
       return res.data;
     } catch (error) {
-      console.log("Error -->", error);
+      return {results: []}
     }
   }

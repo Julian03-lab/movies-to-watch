@@ -4,10 +4,12 @@ import { getMovies } from "@/utils/getMovies";
 
 const ServerMovieListFromApi = async ({
   search,
+  page,
 }: {
   search: string | undefined;
+  page: number;
 }) => {
-  const movies: responseTMDB = await getMovies(search);
+  const movies: responseTMDB = await getMovies(search, page);
   return (
     <>
       {/* <Pagination
@@ -16,7 +18,7 @@ const ServerMovieListFromApi = async ({
         setPage={setPage}
       />*/}
 
-      <div className="grid grid-cols-2 md:grid-cols-10 gap-4 justify-start w-full">
+      <div className="flex flex-wrap gap-x-2 justify-start w-full max-w-desktop gap-y-4">
         {movies.results.length > 0 &&
           movies.results.map((movie) => (
             <MovieCard key={movie.id} movie={movie} />

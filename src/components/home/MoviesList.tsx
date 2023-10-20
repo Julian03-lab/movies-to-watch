@@ -40,7 +40,7 @@ const MoviesList = async ({ status }: { status: string | undefined }) => {
             key={movie.id}
             className="flex flex-col items-center justify-end"
           >
-            <p className="text-sm font-semibold text-center text-primary-500 tracking-wider uppercase">
+            <p className="text-sm font-semibold text-center text-primary-500 tracking-wider uppercase flex-wrap w-[250px]">
               {movie.title}
             </p>
             <p className="text-xs font-normal text-center text-primary-500 flex gap-1">
@@ -57,6 +57,8 @@ const MoviesList = async ({ status }: { status: string | undefined }) => {
               <AuthButtonMovies movie={movie} />
               <Image
                 fill
+                sizes="100%"
+                priority
                 className={`rounded-lg ${
                   !movie.user_vote && "grayscale"
                 } group-hover:grayscale-[40%] group-hover:shadow-lg`}

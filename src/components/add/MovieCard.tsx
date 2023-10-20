@@ -17,15 +17,17 @@ const MovieCard = ({ movie }: { movie: Movie }) => {
         onClick={() => setSetselectedMovie(movie)}
         className="flex flex-col items-center"
       >
-        <Image
-          priority
-          width={720}
-          height={1280}
-          className="rounded-lg h-[176px]"
-          src={"https://image.tmdb.org/t/p/original" + movie.poster_path}
-          alt={movie.title}
-        />
-        <p className="text-[10px] font-semibold text-center text-primary-500 tracking-wider uppercase my-2 max-w-full truncate">
+        <div className="relative h-[370px] w-[252px]">
+          <Image
+            priority
+            fill
+            sizes="100%"
+            className="rounded-lg"
+            src={"https://image.tmdb.org/t/p/original" + movie.poster_path}
+            alt={movie.title}
+          />
+        </div>
+        <p className="text-sm font-semibold text-center text-primary-500 tracking-wider uppercase w-[250px] mt-3 truncate">
           {movie.title}
         </p>
         <p className="text-[10px] font-normal text-center text-primary-500 flex gap-1">
