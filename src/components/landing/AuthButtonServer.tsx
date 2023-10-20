@@ -1,13 +1,11 @@
 import React from "react";
 import FormLogin from "./FormLogin";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import supabaseServer from "@/utils/supabase/supabaseServer";
 
 const AuthButtonServer = async () => {
-  const supabase = createServerComponentClient({ cookies });
   const {
     data: { session },
-  } = await supabase.auth.getSession();
+  } = await supabaseServer().auth.getSession();
 
   return <FormLogin session={session} />;
 };

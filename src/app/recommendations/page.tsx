@@ -1,12 +1,11 @@
 import { Movie } from "@/types/common";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
+import supabaseServer from "@/utils/supabase/supabaseServer";
 import Image from "next/image";
 import Link from "next/link";
 
 const Recommendations = async () => {
-  const supabase = createServerComponentClient({ cookies });
-  const { data, error } = await supabase.from("recommendations").select(`
+  const { data, error } = await supabaseServer().from("recommendations")
+    .select(`
   id,
   name,
   base_movies (id, title,overview, poster_path, vote_average, release_date)

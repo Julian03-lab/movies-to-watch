@@ -1,16 +1,13 @@
 import { StarIcon } from "@/utils/Icons";
 import Image from "next/image";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import AddMovieCard from "./AddMovieCard";
 import voteAverageFormatter from "@/utils/voteAverageFormatter";
 import { MovieDetail } from "@/types/common";
 import { CardActionButtons } from "./CardActionButtons";
 import AuthButtonMovies from "../landing/AuthButtonMovie";
+import supabaseServer from "@/utils/supabase/supabaseServer";
 
 const MoviesList = async ({ status }: { status: string | undefined }) => {
-  const supabase = createServerComponentClient({ cookies });
-
   const watched =
     status === undefined ? undefined : status === "qualified" ? true : false;
 
@@ -18,9 +15,9 @@ const MoviesList = async ({ status }: { status: string | undefined }) => {
 
   const {
     data: { session },
-  } = await supabase.auth.getSession();
+  } = await supabaseServer().auth.getSession();
 
-  let query = supabase
+  let query = supabaseServer()
     .from("movies")
     .select()
     .order("created_at", { ascending: true })

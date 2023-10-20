@@ -1,23 +1,21 @@
 import Title from "@/components/home/Title";
 import AuthButtonServer from "@/components/landing/AuthButtonServer";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import { Suspense } from "react";
 import MoviesList from "@/components/home/MoviesList";
 import FilterButton from "@/components/home/FilterButton";
+import supabaseServer from "@/utils/supabase/supabaseServer";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export default async function Home({ searchParams }: Props) {
-  const supabase = createServerComponentClient({ cookies });
   const status =
     typeof searchParams.status === "string" ? searchParams.status : undefined;
 
   const {
     data: { session },
-  } = await supabase.auth.getSession();
+  } = await supabaseServer().auth.getSession();
 
   if (!session) {
     return (

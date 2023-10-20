@@ -1,20 +1,17 @@
 import AddButton from "@/components/recommendations/AddButton";
 import { RecommendationsTitle } from "@/components/recommendations/RecommendationsTitle";
 import { StarIcon } from "@/utils/Icons";
+import supabaseServer from "@/utils/supabase/supabaseServer";
 import voteAverageFormatter from "@/utils/voteAverageFormatter";
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
-import { cookies } from "next/headers";
 import Image from "next/image";
 import { Fragment } from "react";
 
 const Page = async ({ params }: { params: { id: string } }) => {
-  const supabase = createServerComponentClient({ cookies });
-
   const {
     data: { session },
-  } = await supabase.auth.getSession();
+  } = await supabaseServer().auth.getSession();
 
-  const { data } = await supabase
+  const { data } = await supabaseServer()
     .from("recommendations")
     .select(
       `
